@@ -8,6 +8,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Images\SB_type1.png" />
+    <None Remove="Images\SB_type2.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <COMReference Include="DraftSight">
       <WrapperTool>tlbimp</WrapperTool>
       <VersionMinor>0</VersionMinor>
@@ -36,7 +41,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Content\" />
+    <Resource Include="Images\SB_type1.png" />
+    <Resource Include="Images\SB_type2.png" />
   </ItemGroup>
 
 </Project>
