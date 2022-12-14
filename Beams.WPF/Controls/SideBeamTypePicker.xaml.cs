@@ -18,9 +18,9 @@ namespace Beams.WPF.Controls
     /// <summary>
     /// Interaction logic for SideBeamTypeChooser.xaml
     /// </summary>
-    public partial class SideBeamTypeChooser : UserControl
+    public partial class SideBeamTypePicker : UserControl
     {
-        public SideBeamTypeChooser()
+        public SideBeamTypePicker()
         {
             InitializeComponent();
         }

@@ -1,5 +1,5 @@
 ﻿<UserControl
-    x:Class="Beams.WPF.Controls.SideBeamTypeChooser"
+    x:Class="Beams.WPF.Controls.SideBeamTypePicker"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -10,14 +10,20 @@
     mc:Ignorable="d">
     <Grid>
         <DockPanel>
-            <CheckBox
+            <RadioButton
                 Margin="5"
                 VerticalContentAlignment="Center"
-                DockPanel.Dock="Left" />
-            <Image
-                Margin="5"
-                VerticalAlignment="Center"
-                DockPanel.Dock="Right" />
+                DockPanel.Dock="Left"
+                GroupName="SideBeams"
+                IsChecked="{Binding IsChecked}">
+                <Image
+                    MaxWidth="350"
+                    Margin="5"
+                    VerticalAlignment="Center"
+                    DockPanel.Dock="Right"
+                    Source="{Binding DisplayImagePath}" />
+            </RadioButton>
+
         </DockPanel>
     </Grid>
 </UserControl>
