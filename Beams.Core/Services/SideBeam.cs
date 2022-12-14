@@ -80,8 +80,8 @@ namespace Beams.Core.Services
         {
             dsSketchManager.InsertLine(-1, -1, 0.00000000000000, rollingLength + 1, -1, 0.00000000000000);
             dsSketchManager.InsertLine(-1, -1, 0.00000000000000, -1, height + 1, 0.00000000000000);
-            dsSketchManager.InsertLine(-1, height + 2, 0.00000000000000, rollingLength + 1, height + 2, 0.00000000000000);
-            dsSketchManager.InsertLine(rollingLength + 1, height + 2, 0.00000000000000, rollingLength + 1, -1, 0.00000000000000);
+            dsSketchManager.InsertLine(-1, height + 1, 0.00000000000000, rollingLength + 1, height + 1, 0.00000000000000);
+            dsSketchManager.InsertLine(rollingLength + 1, height + 1, 0.00000000000000, rollingLength + 1, -1, 0.00000000000000);
         }
 
         private double DrawType1Geometry(SketchManager dsSketchManager, BeamDimensions beamDimensions)
