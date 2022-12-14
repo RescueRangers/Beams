@@ -1,18 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Reflection.PortableExecutable;
-using System.Threading.Tasks;
-using System.Windows;
-using Microsoft.Extensions.DependencyInjection;
-using Serilog.Formatting.Compact;
-using Serilog;
+﻿using System.Windows;
 using Beams.Core.Interfaces;
 using Beams.Core.Services;
 using Beams.WPF.Services;
 using Beams.WPF.ViewModels;
+using Microsoft.Extensions.DependencyInjection;
+using Serilog;
+using Serilog.Formatting.Compact;
 
 namespace Beams.WPF
 {

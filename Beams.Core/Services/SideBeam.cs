@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Beams.Core.Interfaces;
+﻿using Beams.Core.Interfaces;
 using Beams.Core.Models;
 using DraftSight;
 
@@ -68,13 +63,13 @@ namespace Beams.Core.Services
             var rollingStartX = 0d;
             var rollingEndX = rollingStartX;
 
-            for (int i = 0; i < dimensions.Lengths.Count; i+=2)
+            for (int i = 0; i < dimensions.Lengths.Count; i += 2)
             {
                 dsSketchManager.InsertLine(rollingStartX, 0.00000000000000, 0.00000000000000, rollingEndX, dimensions.Width, 0.00000000000000);
                 rollingStartX += dimensions.Lengths[i] + offset - dimensions.Width;
                 rollingEndX += dimensions.Lengths[i] + offset;
                 dsSketchManager.InsertLine(rollingStartX, 0.00000000000000, 0.00000000000000, rollingEndX, dimensions.Width, 0.00000000000000);
-                rollingStartX += dimensions.Lengths[i+1] + offset;
+                rollingStartX += dimensions.Lengths[i + 1] + offset;
                 rollingEndX = rollingStartX;
             }
             dsSketchManager.InsertLine(rollingStartX, 0.00000000000000, 0.00000000000000, rollingEndX, dimensions.Width, 0.00000000000000);
@@ -107,7 +102,7 @@ namespace Beams.Core.Services
                 rollingEndX += length + offset - beamDimensions.Width;
                 dsSketchManager.InsertLine(rollingStartX, 0.00000000000000, 0.00000000000000, rollingEndX, beamDimensions.Width, 0.00000000000000);
             }
-            
+
             return rollingEndX;
         }
     }

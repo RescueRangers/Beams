@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
-using System.Net.Http.Headers;
-using System.Runtime.InteropServices;
 using Beams.Core.Interfaces;
 using Beams.Core.Models;
 using Beams.WPF.Hacks;
@@ -121,7 +117,7 @@ namespace Beams.WPF.ViewModels
             {
                 sideBeamTypes = value;
                 OnPropertyChanged(nameof(SideBeamTypes));
-                
+
             }
         }
     }
