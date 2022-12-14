@@ -12,6 +12,12 @@
     MinWidth="977"
     MinHeight="450"
     mc:Ignorable="d">
+    <Window.InputBindings>
+        <KeyBinding
+            Key="D"
+            Command="{Binding DrawSideBeamCommand}"
+            Modifiers="Ctrl" />
+    </Window.InputBindings>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
