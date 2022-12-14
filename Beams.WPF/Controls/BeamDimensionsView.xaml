@@ -21,66 +21,61 @@
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
 
-        <DockPanel
+        <StackPanel
             Grid.Row="0"
             Grid.Column="0"
-            LastChildFill="True">
-
+            Grid.ColumnSpan="3"
+            HorizontalAlignment="Right"
+            Orientation="Horizontal">
             <Label
                 Margin="5,5"
+                VerticalAlignment="Center"
                 Content="Material width:"
-                FontSize="26" />
+                FontSize="16" />
 
             <TextBox
+                MinWidth="50"
                 Margin="5,5"
                 Padding="10,0"
+                HorizontalContentAlignment="Center"
                 VerticalContentAlignment="Center"
                 deps:SelectTextOnFocus.Active="True"
-                FontSize="22"
+                FontSize="14"
                 Text="{Binding MaterialWidth, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
-        </DockPanel>
-
-        <DockPanel
-            Grid.Row="0"
-            Grid.Column="1"
-            LastChildFill="True">
-
             <Label
                 Margin="5,5"
+                VerticalAlignment="Center"
                 Content="Height:"
-                FontSize="26" />
+                FontSize="16" />
 
             <TextBox
+                MinWidth="60"
                 Margin="5,5"
                 Padding="10,0"
+                HorizontalContentAlignment="Center"
                 VerticalContentAlignment="Center"
                 deps:SelectTextOnFocus.Active="True"
-                FontSize="22"
+                FontSize="14"
                 Text="{Binding Height, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-
-        </DockPanel>
-
-        <DockPanel
-            Grid.Row="0"
-            Grid.Column="2"
-            LastChildFill="True">
-
             <Label
                 Margin="5,5"
+                VerticalAlignment="Center"
                 Content="Added Length:"
-                FontSize="26" />
+                FontSize="16" />
 
             <TextBox
                 x:Name="AddTextBox"
+                MinWidth="60"
                 Margin="5,5"
                 Padding="10,0"
+                HorizontalContentAlignment="Center"
                 VerticalContentAlignment="Center"
                 deps:SelectTextOnFocus.Active="True"
-                FontSize="22"
+                FontSize="14"
                 Text="{Binding AddedLength, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
-        </DockPanel>
+        </StackPanel>
 
         <ListBox
             x:Name="LengthsListBox"
@@ -88,6 +83,7 @@
             Grid.ColumnSpan="3"
             HorizontalContentAlignment="Stretch"
             d:ItemsSource="{d:SampleData ItemCount=5}"
+            BorderThickness="0"
             IsTabStop="False"
             ItemsSource="{Binding Dimensions}"
             KeyboardNavigation.TabNavigation="Cycle">
@@ -103,46 +99,47 @@
             </ListBox.ItemContainerStyle>
         </ListBox>
 
-        <DockPanel
+        <StackPanel
             Grid.Row="2"
             Grid.Column="0"
             Grid.ColumnSpan="3"
-            LastChildFill="True">
+            HorizontalAlignment="Right"
+            Orientation="Horizontal">
             <Label
                 Margin="5,5"
+                VerticalAlignment="Center"
                 Content="Add beams:"
                 DockPanel.Dock="Left"
-                FontSize="26" />
-
-            <Button
-                Width="160"
-                Margin="10,5"
-                Command="{Binding ClearBeamsCommand}"
-                Content="Clear beams"
-                DockPanel.Dock="Right"
-                FontSize="26" />
-
-            <Button
-                Width="120"
-                Margin="10,5"
-                Command="{Binding AddBeamsCommand}"
-                Content="Add"
-                DockPanel.Dock="Right"
-                FontSize="26" />
+                FontSize="16" />
 
             <TextBox
-                x:Name="HeightTextBox"
+                MinWidth="60"
                 Margin="5,5"
                 Padding="10,0"
+                HorizontalContentAlignment="Center"
                 VerticalContentAlignment="Center"
                 deps:SelectTextOnFocus.Active="True"
                 DockPanel.Dock="Right"
-                FontSize="22"
+                FontSize="14"
                 Text="{Binding NumOfBeams, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                 <TextBox.InputBindings>
                     <KeyBinding Key="Enter" Command="{Binding AddBeamsCommand}" />
                 </TextBox.InputBindings>
             </TextBox>
-        </DockPanel>
+            <Button
+                Width="60"
+                Margin="10,5"
+                Command="{Binding AddBeamsCommand}"
+                Content="Add"
+                DockPanel.Dock="Right"
+                FontSize="16" />
+            <Button
+                Width="120"
+                Margin="10,5"
+                Command="{Binding ClearBeamsCommand}"
+                Content="Clear beams"
+                DockPanel.Dock="Right"
+                FontSize="16" />
+        </StackPanel>
     </Grid>
 </UserControl>
