@@ -17,10 +17,12 @@ namespace Beams.WPF.ViewModels
         private int numOfBeams;
         private double materialWidth = 405;
 
+
+
         public BeamDimensionsViewModel()
         {
             AddBeamsCommand = new RelayCommand(() => AddBeams());
-            ClearBeamsCommand = new RelayCommand(() => Dimensions.Clear());
+            ClearBeamsCommand = new RelayCommand(() => ClearBeams());
         }
 
         private void AddBeams()
@@ -28,6 +30,19 @@ namespace Beams.WPF.ViewModels
             for (int i = 0; i < numOfBeams; i++)
             {
                 dimensions.Add(new BeamDimensionViewModel());
+            }
+            if (BeamsChanged != null)
+            {
+                BeamsChanged(this, new EventArgs());
+            }
+        }
+
+        private void ClearBeams()
+        {
+            Dimensions.Clear();
+            if (BeamsChanged != null)
+            {
+                BeamsChanged(this, new EventArgs());
             }
         }
 
@@ -78,5 +93,8 @@ namespace Beams.WPF.ViewModels
         }
         public IRelayCommand AddBeamsCommand { get; private set; }
         public IRelayCommand ClearBeamsCommand { get; private set; }
+
+        public delegate void BeamsChangedEventHandler(object sender, EventArgs e);
+        public event BeamsChangedEventHandler BeamsChanged;
     }
 }

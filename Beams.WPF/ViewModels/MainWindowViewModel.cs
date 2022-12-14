@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Net.Http.Headers;
 using System.Runtime.InteropServices;
@@ -19,10 +21,32 @@ namespace Beams.WPF.ViewModels
         {
             this.sideBeam = sideBeam;
 
-            DrawSideBeamCommand = new RelayCommand(StartDraw);
+            DrawSideBeamCommand = new RelayCommand(StartDraw, () => CanDraw());
             this.logger = logger;
             this.messagingService = messagingService;
             dimensions = new BeamDimensionsViewModel();
+            SideBeamTypes = new BindingList<SideBeamTypeViewModel>
+            {
+                new SideBeamTypeViewModel(SideBeamType.Type1),
+                new SideBeamTypeViewModel(SideBeamType.Type2)
+            };
+            SideBeamTypes.ListChanged += SideBeamTypes_ListChanged;
+            Dimensions.BeamsChanged += Dimensions_BeamsChanged;
+        }
+
+        private void Dimensions_BeamsChanged(object sender, EventArgs e)
+        {
+            DrawSideBeamCommand.NotifyCanExecuteChanged();
+        }
+
+        private void SideBeamTypes_ListChanged(object? sender, ListChangedEventArgs e)
+        {
+            DrawSideBeamCommand.NotifyCanExecuteChanged();
+        }
+
+        private bool CanDraw()
+        {
+            return SideBeamTypes.Any(s => s.IsChecked) && Dimensions.Dimensions.Any();
         }
 
         private void StartDraw()
@@ -45,7 +69,8 @@ namespace Beams.WPF.ViewModels
             }
             else
             {
-                sideBeam.Draw(ds, dims);
+                var type = SideBeamTypes.FirstOrDefault(s => s.IsChecked).SideBeamType;
+                sideBeam.Draw(ds, dims, type);
             }
         }
 
@@ -76,6 +101,7 @@ namespace Beams.WPF.ViewModels
         private ILogger<MainWindowViewModel> logger;
         private IMessagingService messagingService;
         private BeamDimensionsViewModel dimensions;
+        private BindingList<SideBeamTypeViewModel> sideBeamTypes;
 
         public IRelayCommand DrawSideBeamCommand { get; private set; }
 
@@ -86,6 +112,16 @@ namespace Beams.WPF.ViewModels
             {
                 dimensions = value;
                 OnPropertyChanged();
+            }
+        }
+        public BindingList<SideBeamTypeViewModel> SideBeamTypes
+        {
+            get => sideBeamTypes;
+            set
+            {
+                sideBeamTypes = value;
+                OnPropertyChanged(nameof(SideBeamTypes));
+                
             }
         }
     }
