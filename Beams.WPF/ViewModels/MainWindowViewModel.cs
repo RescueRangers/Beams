@@ -47,14 +47,15 @@ namespace Beams.WPF.ViewModels
 
         private void StartDraw()
         {
-            var dims = new BeamDimensions
+            var beam = new Beam
             {
                 Width = dimensions.Height,
                 MaterialWidth = dimensions.MaterialWidth,
-                AddedLength = dimensions.AddedLength
-            };
+                AddedLength = dimensions.AddedLength,
+                BeamType = SideBeamTypes.FirstOrDefault(s => s.IsChecked).SideBeamType
+        };
 
-            dims.Lengths = dimensions.Dimensions.Select(s => s.Length).ToList();
+            beam.Lengths = dimensions.Dimensions.Select(s => s.Length).ToList();
 
             var ds = TryGetDraftSightInstance();
 
@@ -66,7 +67,7 @@ namespace Beams.WPF.ViewModels
             else
             {
                 var type = SideBeamTypes.FirstOrDefault(s => s.IsChecked).SideBeamType;
-                sideBeam.Draw(ds, dims, type);
+                sideBeam.Draw(ds, beam);
             }
         }
 

@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Beams.Core", "Beams.Core\Be
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Beams.WPF", "Beams.WPF\Beams.WPF.csproj", "{2D28F232-FFEB-49F5-B899-E9833C7F6A27}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Beams.Tests", "Beams.Tests\Beams.Tests.csproj", "{472EE5F1-ECBD-4F03-A820-3F6796F904EF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{2D28F232-FFEB-49F5-B899-E9833C7F6A27}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2D28F232-FFEB-49F5-B899-E9833C7F6A27}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2D28F232-FFEB-49F5-B899-E9833C7F6A27}.Release|Any CPU.Build.0 = Release|Any CPU
+		{472EE5F1-ECBD-4F03-A820-3F6796F904EF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{472EE5F1-ECBD-4F03-A820-3F6796F904EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{472EE5F1-ECBD-4F03-A820-3F6796F904EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{472EE5F1-ECBD-4F03-A820-3F6796F904EF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

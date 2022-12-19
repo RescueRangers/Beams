@@ -5,6 +5,6 @@ namespace Beams.Core.Interfaces
 {
     public interface ISideBeam
     {
-        void Draw(Application dsApp, BeamDimensions dimensions, SideBeamType beamType);
+        void Draw(Application dsApp, Beam dimensions);
     }
 }
