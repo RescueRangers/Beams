@@ -16,5 +16,6 @@ namespace Beams.WPF.ViewModels
             }
         }
 
+        public int Number { get; set; }
     }
 }

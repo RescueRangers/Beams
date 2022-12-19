@@ -15,20 +15,22 @@
             <ColumnDefinition MinWidth="300" />
         </Grid.ColumnDefinitions>-->
         <Label
+            MinWidth="50"
             Margin="0,0,5,0"
             Padding="10,0"
             VerticalContentAlignment="Center"
-            Content="Length:"
+            Content="{Binding Number}"
             DockPanel.Dock="Left"
-            FontSize="16" IsTabStop="False"/>
+            FontSize="16"
+            IsTabStop="False" />
         <TextBox
             Margin="5,0,0,0"
             Padding="10,0"
-            KeyDown="TextBox_KeyDown"
-            deps:SelectTextOnFocus.Active="True"
             VerticalContentAlignment="Center"
+            deps:SelectTextOnFocus.Active="True"
             FontSize="12"
             IsTabStop="True"
+            KeyDown="TextBox_KeyDown"
             Text="{Binding Length, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
     </DockPanel>
 </UserControl>
