@@ -39,9 +39,6 @@ namespace Beams.Core.Services
             {
                 return;
             }
-            dsSetCommandOptionResult_e result;
-
-            double rollingLength = 0;
 
             var coordinates = beam.GetBeamCoordinates();
 
