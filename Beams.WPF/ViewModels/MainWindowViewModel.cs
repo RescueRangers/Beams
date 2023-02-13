@@ -24,7 +24,8 @@ namespace Beams.WPF.ViewModels
             SideBeamTypes = new BindingList<SideBeamTypeViewModel>
             {
                 new SideBeamTypeViewModel(SideBeamType.Type1),
-                new SideBeamTypeViewModel(SideBeamType.Type2)
+                new SideBeamTypeViewModel(SideBeamType.Type2),
+                new SideBeamTypeViewModel(SideBeamType.Type3)
             };
             SideBeamTypes.ListChanged += SideBeamTypes_ListChanged;
             Dimensions.BeamsChanged += Dimensions_BeamsChanged;

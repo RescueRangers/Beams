@@ -13,6 +13,7 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="55" />
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
             <RowDefinition Height="55" />
         </Grid.RowDefinitions>
@@ -77,13 +78,29 @@
                 Text="{Binding AddedLength, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
         </StackPanel>
-
-        <ListBox
-            x:Name="LengthsListBox"
+        <StackPanel
             Grid.Row="1"
             Grid.ColumnSpan="3"
+            Orientation="Horizontal">
+            <Border>
+                <Label
+                    VerticalContentAlignment="Center"
+                    Content="No."
+                    FontSize="16" MinWidth="50"/>
+            </Border>
+            <Border>
+                <Label
+                    VerticalContentAlignment="Center"
+                    Content="Length"
+                    FontSize="16" />
+            </Border>
+        </StackPanel>
+        <ListView
+            x:Name="LengthsListBox"
+            Grid.Row="2"
+            Grid.ColumnSpan="3"
             HorizontalContentAlignment="Stretch"
-            d:ItemsSource="{d:SampleData ItemCount=5}"
+            d:ItemsSource="{d:SampleData ItemCount=16}"
             dd:DragDrop.DropHandler="{Binding}"
             dd:DragDrop.IsDragSource="True"
             dd:DragDrop.IsDropTarget="True"
@@ -92,20 +109,20 @@
             IsTabStop="False"
             ItemsSource="{Binding Dimensions}"
             KeyboardNavigation.TabNavigation="Cycle">
-            <ListBox.ItemTemplate>
+            <ListView.ItemTemplate>
                 <DataTemplate>
                     <local:BeamDimensionView DataContext="{Binding}" IsTabStop="False" />
                 </DataTemplate>
-            </ListBox.ItemTemplate>
-            <ListBox.ItemContainerStyle>
+            </ListView.ItemTemplate>
+            <ListView.ItemContainerStyle>
                 <Style>
                     <Setter Property="KeyboardNavigation.IsTabStop" Value="False" />
                 </Style>
-            </ListBox.ItemContainerStyle>
-        </ListBox>
+            </ListView.ItemContainerStyle>
+        </ListView>
 
         <StackPanel
-            Grid.Row="2"
+            Grid.Row="3"
             Grid.Column="0"
             Grid.ColumnSpan="3"
             HorizontalAlignment="Right"
