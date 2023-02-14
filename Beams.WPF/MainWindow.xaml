@@ -4,13 +4,16 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:controls="clr-namespace:Beams.WPF.Controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:dd="urn:gong-wpf-dragdrop"
     xmlns:local="clr-namespace:Beams.WPF"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    Title="MainWindow"
-    Width="977"
+    Title="Beams"
+    Width="1000"
     Height="450"
-    MinWidth="977"
+    MinWidth="1000"
     MinHeight="450"
+    dd:DragDrop.DropHandler="{Binding}"
+    dd:DragDrop.IsDropTarget="True"
     mc:Ignorable="d">
     <Window.InputBindings>
         <KeyBinding

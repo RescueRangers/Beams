@@ -47,6 +47,7 @@ namespace Beams.WPF
                 })
 #endif
                 .AddSingleton<ISideBeam, SideBeam>()
+                .AddSingleton<ICsvService, CsvService>()
                 .AddSingleton<MainWindowViewModel>()
                 .AddTransient<MainWindow>()
                 .AddSingleton<IMessagingService, WpfMessagingService>();

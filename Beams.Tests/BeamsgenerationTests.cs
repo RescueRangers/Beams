@@ -6,15 +6,18 @@ namespace Beams.Tests
     {
         private List<BeamCoordinate> knownGoodBeam1Coordinates;
         private List<BeamCoordinate> knownGoodBeam2Coordinates;
+        private List<BeamCoordinate> knownGoodBeam3Coordinates;
         private List<double> lengths = new List<double> { 1000, 2000, 3000, 4000, 5000 };
         private Beam type1Beam;
         private Beam type2Beam;
+        private Beam type3Beam;
 
         [SetUp]
         public void Setup()
         {
             GenerateGoodBeam1Coordinates();
             GenerateGoodBeam2Coordinates();
+            GenerateGoodBeam3Coordinates();
 
             type1Beam = new Beam
             {
@@ -31,6 +34,14 @@ namespace Beams.Tests
                 Width = 410,
                 Lengths = lengths,
                 BeamType = SideBeamType.Type2
+            };
+            type3Beam = new Beam
+            {
+                AddedLength = 15,
+                MaterialWidth = 405,
+                Width = 410,
+                Lengths = lengths,
+                BeamType = SideBeamType.Type3
             };
         }
 
@@ -69,6 +80,26 @@ namespace Beams.Tests
                     Assert.That(coord.X2, Is.EqualTo(knownGoodBeam2Coordinates[i].X2));
                     Assert.That(coord.Y2, Is.EqualTo(knownGoodBeam2Coordinates[i].Y2));
                 });
+            }
+        }
+
+        [Test]
+        public void TestBeam3CoordinateGeneration()
+        {
+            var coordinates = type3Beam.GetBeamCoordinates();
+
+            for (int i = 0; i < coordinates.Count; i++)
+            {
+                BeamCoordinate? coord = coordinates[i];
+                Assert.That(coord, Is.Not.Null);
+                Assert.Multiple(() =>
+                {
+                    Assert.That(coord.X1, Is.EqualTo(knownGoodBeam3Coordinates[i].X1));
+                    Assert.That(coord.Y1, Is.EqualTo(knownGoodBeam3Coordinates[i].Y1));
+                    Assert.That(coord.X2, Is.EqualTo(knownGoodBeam3Coordinates[i].X2));
+                    Assert.That(coord.Y2, Is.EqualTo(knownGoodBeam3Coordinates[i].Y2));
+                });
+                Assert.That(type3Beam.TotalLength, Is.EqualTo(14280));
             }
         }
 
@@ -182,5 +213,59 @@ namespace Beams.Tests
             };
         }
 
+        private void GenerateGoodBeam3Coordinates()
+        {
+            var coordinate1 = new BeamCoordinate
+            {
+                X1 = 0,
+                X2 = 0,
+                Y1 = 0,
+                Y2 = 410
+            };
+            var coordinate2 = new BeamCoordinate
+            {
+                X1 = 1020,
+                X2 = 610,
+                Y1 = 0,
+                Y2 = 410
+            };
+            var coordinate3 = new BeamCoordinate
+            {
+                X1 = 2630,
+                X2 = 2630,
+                Y1 = 0,
+                Y2 = 410
+            };
+            var coordinate4 = new BeamCoordinate
+            {
+                X1 = 5650,
+                X2 = 5240,
+                Y1 = 0,
+                Y2 = 410
+            };
+            var coordinate5 = new BeamCoordinate
+            {
+                X1 = 9260,
+                X2 = 9260,
+                Y1 = 0,
+                Y2 = 410
+            };
+            var coordinate6 = new BeamCoordinate
+            {
+                X1 = 14280,
+                X2 = 13870,
+                Y1 = 0,
+                Y2 = 410
+            };
+            knownGoodBeam3Coordinates = new List<BeamCoordinate>
+            {
+                coordinate1,
+                coordinate2,
+                coordinate3,
+                coordinate4,
+                coordinate5,
+                coordinate6
+            };
+        }
     }
 }

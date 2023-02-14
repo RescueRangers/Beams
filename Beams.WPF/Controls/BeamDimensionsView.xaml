@@ -84,9 +84,10 @@
             Orientation="Horizontal">
             <Border>
                 <Label
+                    MinWidth="50"
                     VerticalContentAlignment="Center"
                     Content="No."
-                    FontSize="16" MinWidth="50"/>
+                    FontSize="16" />
             </Border>
             <Border>
                 <Label
@@ -120,19 +121,51 @@
                 </Style>
             </ListView.ItemContainerStyle>
         </ListView>
-
-        <StackPanel
+        <Border
             Grid.Row="3"
             Grid.Column="0"
+            Margin="10,0,0,0"
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Stretch"
+            Background="Honeydew">
+            <StackPanel Margin="10,0,0,0" Orientation="Horizontal">
+                <TextBlock
+                    Margin="0,5"
+                    VerticalAlignment="Center"
+                    DockPanel.Dock="Left"
+                    FontSize="16"
+                    Text="Length ≈"
+                    TextWrapping="Wrap" />
+                <Label
+                    Margin="0,5"
+                    VerticalAlignment="Center"
+                    Content="{Binding TotalBeamLength}"
+                    DockPanel.Dock="Left"
+                    FontSize="16" />
+                <TextBlock
+                    Margin="0,5"
+                    VerticalAlignment="Center"
+                    DockPanel.Dock="Left"
+                    FontSize="16"
+                    Text="m"
+                    TextWrapping="Wrap" />
+            </StackPanel>
+        </Border>
+        <StackPanel
+            Grid.Row="3"
+            Grid.Column="1"
             Grid.ColumnSpan="3"
             HorizontalAlignment="Right"
             Orientation="Horizontal">
-            <Label
+
+            <TextBlock
+                Width="50"
                 Margin="5,5"
                 VerticalAlignment="Center"
-                Content="Add beams:"
                 DockPanel.Dock="Left"
-                FontSize="16" />
+                FontSize="16"
+                Text="Add beams:"
+                TextWrapping="Wrap" />
 
             <TextBox
                 MinWidth="60"

@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
+using System.Security.Cryptography.Xml;
 using System.Windows;
+using Beams.WPF.Services;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using GongSolutions.Wpf.DragDrop;
@@ -30,7 +33,9 @@ namespace Beams.WPF.ViewModels
 
             for (int i = 0; i < numOfBeams; i++)
             {
-                dimensions.Add(new BeamDimensionViewModel { Number = currentBeamCount + i+1});
+                var dim = new BeamDimensionViewModel { Number = currentBeamCount + i + 1 };
+                dim.PropertyChanged += DimensionPropertyChanged;
+                dimensions.Add(dim);
             }
             if (BeamsChanged != null)
             {
@@ -38,7 +43,15 @@ namespace Beams.WPF.ViewModels
             }
         }
 
-        private void ClearBeams()
+        private void DimensionPropertyChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == nameof(BeamDimensionViewModel.Length))
+            {
+                OnPropertyChanged(nameof(TotalBeamLength));
+            }
+        }
+
+        public void ClearBeams()
         {
             Dimensions.Clear();
             if (BeamsChanged != null)
@@ -47,7 +60,21 @@ namespace Beams.WPF.ViewModels
             }
         }
 
+        public void AddBeams(List<BeamDimensionViewModel> dimensions)
+        {
+            Dimensions = new ObservableCollection<BeamDimensionViewModel>(dimensions);
+            OnPropertyChanged(nameof(TotalBeamLength));
+        }
+
         public void DragOver(IDropInfo dropInfo)
+        {
+            if (dropInfo.Data is BeamDimensionViewModel)
+            {
+                DimensionDragOver(dropInfo);
+            }
+        }
+
+        private static void DimensionDragOver(IDropInfo dropInfo)
         {
             var sourceItem = dropInfo.Data as BeamDimensionViewModel;
             var targetItem = dropInfo.TargetItem as BeamDimensionViewModel;
@@ -60,6 +87,14 @@ namespace Beams.WPF.ViewModels
         }
 
         public void Drop(IDropInfo dropInfo)
+        {
+            if (dropInfo.Data is BeamDimensionViewModel)
+            {
+                RearrangeDimensions(dropInfo);
+            }
+        }
+
+        private void RearrangeDimensions(IDropInfo dropInfo)
         {
             var sourceItem = dropInfo.Data as BeamDimensionViewModel;
             var targetItem = dropInfo.TargetItem as BeamDimensionViewModel;
@@ -78,6 +113,13 @@ namespace Beams.WPF.ViewModels
             Dimensions = new ObservableCollection<BeamDimensionViewModel>(dims);
         }
 
+        public double TotalBeamLength
+        {
+            get
+            {
+                return dimensions.Sum(s => s.Length) / 1000;
+            }
+        }
         public double Height
         {
             get => height;
@@ -127,6 +169,6 @@ namespace Beams.WPF.ViewModels
         public IRelayCommand ClearBeamsCommand { get; private set; }
 
         public delegate void BeamsChangedEventHandler(object sender, EventArgs e);
-        public event BeamsChangedEventHandler BeamsChanged;
+        public event BeamsChangedEventHandler? BeamsChanged;
     }
 }
