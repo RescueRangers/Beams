@@ -49,7 +49,7 @@ namespace Beams.Core.Services
 
             DrawBeam(dsSketchManager, coordinates);
             
-            DrawBorder(dsSketchManager, coordinates.Last().X2, beam.Width);
+            DrawBorder(dsSketchManager, beam.TotalLength, beam.Width);
         }
 
         private void DrawBeam(SketchManager dsSketchManager, List<BeamCoordinate> beamCoordinates)

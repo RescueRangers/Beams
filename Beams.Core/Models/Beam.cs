@@ -1,4 +1,6 @@
-﻿namespace Beams.Core.Models
+﻿using DraftSight;
+
+namespace Beams.Core.Models
 {
     public class Beam
     {
@@ -6,6 +8,7 @@
         public double AddedLength { get; set; }
         public double MaterialWidth { get; set; }
         public List<double> Lengths { get; set; }
+        public double TotalLength { get; set; }
         public SideBeamType BeamType { get; set; }
 
         public List<BeamCoordinate>? GetBeamCoordinates()
@@ -55,8 +58,8 @@
                         Y2 = Width
                     });
                 }
-
             }
+            TotalLength = coordinates.Last().X1;
             return coordinates;
         }
 
@@ -97,8 +100,8 @@
                         Y2 = Width
                     });
                 }
-                
             }
+            TotalLength = coordinates.Last().X2;
             return coordinates;
         }
 
@@ -127,6 +130,7 @@
                     Y2 = Width
                 });
             }
+            TotalLength = coordinates.Last().X2;
             return coordinates;
         }
     }
