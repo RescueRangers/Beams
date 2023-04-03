@@ -23,6 +23,15 @@
             DockPanel.Dock="Left"
             FontSize="16"
             IsTabStop="False" />
+        <Button Command="{Binding DeleteDimensionCommand}" DockPanel.Dock="Right">
+            <Image
+                MaxWidth="20"
+                Margin="5"
+                VerticalAlignment="Center"
+                DockPanel.Dock="Right"
+                Source=".\..\Images\remove.png" />
+        </Button>
+
         <TextBox
             Margin="5,0,0,0"
             Padding="10,0"

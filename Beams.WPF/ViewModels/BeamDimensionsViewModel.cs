@@ -5,9 +5,11 @@ using System.IO;
 using System.Linq;
 using System.Security.Cryptography.Xml;
 using System.Windows;
+using Beams.WPF.Messages;
 using Beams.WPF.Services;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using CommunityToolkit.Mvvm.Messaging;
 using GongSolutions.Wpf.DragDrop;
 
 namespace Beams.WPF.ViewModels
@@ -24,6 +26,12 @@ namespace Beams.WPF.ViewModels
         {
             AddBeamsCommand = new RelayCommand(() => AddBeams());
             ClearBeamsCommand = new RelayCommand(() => ClearBeams());
+
+            WeakReferenceMessenger.Default.Register<DeleteDimensionMessage>(this, (r, m) =>
+            {
+                Dimensions.Remove(m.Value);
+				OnPropertyChanged(nameof(TotalBeamLength));
+			});
         }
 
         private void AddBeams()

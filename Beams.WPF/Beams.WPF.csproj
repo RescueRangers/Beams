@@ -10,6 +10,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Images\remove.png" />
     <None Remove="Images\SB_type1.png" />
     <None Remove="Images\SB_type2.png" />
     <None Remove="Images\SB_type3.png" />
@@ -49,6 +50,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Images\remove.png" />
     <Resource Include="Images\SB_type1.png" />
     <Resource Include="Images\SB_type2.png" />
     <Resource Include="Images\SB_type3.png" />
