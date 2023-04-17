@@ -10,6 +10,7 @@ namespace Beams.Core.Models
         public List<double> Lengths { get; set; }
         public double TotalLength { get; set; }
         public SideBeamType BeamType { get; set; }
+        public string? SavePath { get; set; }
 
         public List<BeamCoordinate>? GetBeamCoordinates()
         {

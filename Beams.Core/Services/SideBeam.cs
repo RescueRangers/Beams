@@ -1,5 +1,6 @@
 ﻿using Beams.Core.Interfaces;
 using Beams.Core.Models;
+using Beams.Core.Util;
 using DraftSight;
 
 namespace Beams.Core.Services
@@ -11,7 +12,7 @@ namespace Beams.Core.Services
             Document dsDoc = dsApp.GetActiveDocument();
             if (null == dsDoc)
             {
-                return;
+				dsDoc = dsApp.NewDocument("standard.dwt");
             }
 
             Model dsModel = dsDoc.GetModel();
@@ -27,19 +28,6 @@ namespace Beams.Core.Services
                 return;
             }
 
-            object[] sheetsList = (object[])dsDoc.GetSheets();
-            Sheet dsSheet = (Sheet)sheetsList[1];
-            if (null == dsSheet)
-            {
-                return;
-            }
-
-            ViewManager dsViewManager = dsDoc.GetViewManager();
-            if (null == dsViewManager)
-            {
-                return;
-            }
-
             var coordinates = beam.GetBeamCoordinates();
 
             if (coordinates == null)
@@ -50,6 +38,20 @@ namespace Beams.Core.Services
             DrawBeam(dsSketchManager, coordinates);
             
             DrawBorder(dsSketchManager, beam.TotalLength, beam.Width);
+
+            if (!string.IsNullOrWhiteSpace(beam.SavePath))
+            {
+				dsDoc.SaveAs($"{beam.SavePath}+{beam.AddedLength}mm", dsDocumentSaveAsOption_e.dsDocumentSaveAs_R12_ASCII_DXF, out var saveErrors);
+
+				if (saveErrors == dsDocumentSaveError_e.dsDocumentSave_Succeeded)
+				{
+                    dsApp.CloseDocument(dsDoc.GetPathName(), false);
+				}
+				else
+                {
+					throw new FileSaveException($"Could not save the file: {saveErrors}");
+				}
+			}
         }
 
         private void DrawBeam(SketchManager dsSketchManager, List<BeamCoordinate> beamCoordinates)
